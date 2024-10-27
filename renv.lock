@@ -546,6 +546,16 @@
       ],
       "Hash": "18e9c28c1d3ca1560ce30658b22ce104"
     },
+    "pharmaversesdtm": {
+      "Package": "pharmaversesdtm",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "98aa3f704ce745674cc5775a6eeb9076"
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.9.0",
