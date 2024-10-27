@@ -1,6 +1,7 @@
 box::use(
   shiny[
     div,
+    fluidPage,
     isTruthy,
     moduleServer,
     NS,
@@ -21,7 +22,7 @@ box::use(
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  div(
+  fluidPage(
     class = "app-container",
     mod_form$ui(ns("form")),
     mod_table$ui(ns("table"))
