@@ -5,7 +5,6 @@ box::use(
     moduleServer,
     NS,
     observeEvent,
-    reactive,
     reactiveValues,
     renderUI,
     req,
@@ -34,15 +33,9 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
       app_data <- reactiveValues(
-        dataset = reactive({
-          NULL
-        }),
-        description = reactive({
-          NULL
-        }),
-        title = reactive({
-          NULL
-        })
+        dataset = NULL,
+        description = NULL,
+        title = NULL
       )
 
       mod_form$server(
@@ -51,10 +44,7 @@ server <- function(id) {
       )
 
       observeEvent(app_data$dataset, {
-        req(app_data$dataset())
-        print(app_data$dataset())
-        print(app_data$title())
-        print(app_data$description())
+        req(app_data$dataset)
         mod_report$server(
           "report",
           app_data
