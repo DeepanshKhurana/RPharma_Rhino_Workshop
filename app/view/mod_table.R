@@ -5,7 +5,6 @@ box::use(
     renderReactable
   ],
   shiny[
-    div,
     moduleServer,
     NS
   ],

@@ -1,22 +1,17 @@
 box::use(
   shiny[
-    div,
     fluidPage,
-    isTruthy,
     moduleServer,
     NS,
     observeEvent,
     reactiveValues,
-    renderUI,
     req,
-    tags,
-    uiOutput
   ],
 )
 
 box::use(
   app/view/mod_form,
-  app/view/mod_table
+  app/view/mod_table,
 )
 
 #' @export
@@ -33,22 +28,22 @@ ui <- function(id) {
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
-      app_data <- reactiveValues(
-        dataset = NULL
-      )
+    app_data <- reactiveValues(
+      dataset = NULL
+    )
 
-      mod_form$server(
-        "form",
+    mod_form$server(
+      "form",
+      app_data
+    )
+
+    observeEvent(app_data$dataset, {
+      req(app_data$dataset)
+      mod_table$server(
+        "table",
         app_data
       )
-
-      observeEvent(app_data$dataset, {
-        req(app_data$dataset)
-        mod_table$server(
-          "table",
-          app_data
-        )
-      })
+    })
 
   })
 }

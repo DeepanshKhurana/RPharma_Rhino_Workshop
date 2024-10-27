@@ -1,7 +1,7 @@
 box::use(
   pharmaversesdtm[
-    dm,
-    ds
+    dm, #nolint
+    ds #nolint
   ],
   shiny[
     dateRangeInput,
@@ -10,7 +10,6 @@ box::use(
     NS,
     observe,
     selectizeInput,
-    textInput,
     updateDateRangeInput
   ],
 )
