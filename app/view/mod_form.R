@@ -26,16 +26,6 @@ ui <- function(id) {
         "ds"
       ),
       selected = "dm"
-    ),
-    textInput(
-      inputId = ns("title"),
-      label = "Title",
-      placeholder = "Enter title here"
-    ),
-    textInput(
-      inputId = ns("description"),
-      label = "Description",
-      placeholder = "Enter description here"
     )
   )
 }
@@ -48,8 +38,6 @@ server <- function(
   moduleServer(id, function(input, output, session) {
 
     observe({
-      app_data$title <- input$title
-      app_data$description <- input$description
       app_data$dataset <- get(input$dataset)
     })
 

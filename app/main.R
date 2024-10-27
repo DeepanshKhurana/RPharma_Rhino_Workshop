@@ -14,8 +14,8 @@ box::use(
 )
 
 box::use(
-  app/view/mod_report,
-  app/view/mod_form
+  app/view/mod_form,
+  app/view/mod_table
 )
 
 #' @export
@@ -23,8 +23,8 @@ ui <- function(id) {
   ns <- NS(id)
   div(
     class = "app-container",
-    mod_report$ui(ns("report")),
-    mod_form$ui(ns("form"))
+    mod_form$ui(ns("form")),
+    mod_table$ui(ns("table"))
   )
 }
 
@@ -33,9 +33,7 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
       app_data <- reactiveValues(
-        dataset = NULL,
-        description = NULL,
-        title = NULL
+        dataset = NULL
       )
 
       mod_form$server(
@@ -45,8 +43,8 @@ server <- function(id) {
 
       observeEvent(app_data$dataset, {
         req(app_data$dataset)
-        mod_report$server(
-          "report",
+        mod_table$server(
+          "table",
           app_data
         )
       })
