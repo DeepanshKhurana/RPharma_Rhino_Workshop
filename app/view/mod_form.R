@@ -1,7 +1,7 @@
 box::use(
-  datasets[
-    mtcars,
-    iris
+  pharmaversesdtm[
+    dm,
+    ds
   ],
   shiny[
     div,
@@ -22,10 +22,10 @@ ui <- function(id) {
       inputId = ns("dataset"),
       label = "Dataset",
       choices = c(
-        "mtcars",
-        "iris"
+        "dm",
+        "ds"
       ),
-      selected = "mtcars"
+      selected = "dm"
     ),
     textInput(
       inputId = ns("title"),
