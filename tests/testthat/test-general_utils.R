@@ -1,6 +1,6 @@
 box::use(
-  shiny[testServer],
   testthat[
+    describe,
     expect_false,
     expect_true,
     test_that
