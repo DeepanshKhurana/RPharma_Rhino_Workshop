@@ -4,7 +4,6 @@ box::use(
   ],
   shiny[
     dateRangeInput,
-    div,
     moduleServer,
     NS,
     observeEvent,
@@ -27,7 +26,7 @@ box::use(
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  div(
+  tags$div(
     class = "selectors",
     uiOutput(
       ns("date_range")
