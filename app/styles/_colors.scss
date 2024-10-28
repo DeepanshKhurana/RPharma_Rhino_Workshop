@@ -1,3 +1,14 @@
 $primary: #276fba;
 $secondary: #e8f1ff;
 $white: #f7faff;
+$lightgrey: #276fba80;
+
+.primary-text {
+  color: $primary;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.secondary-text {
+  color: $lightgrey;
+}

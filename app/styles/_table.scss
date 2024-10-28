@@ -5,6 +5,7 @@
   padding: 3rem;
   border-radius: 2rem;
   box-shadow: 0.5rem 0.5rem 0 0 $primary;
+  font-size: 1rem;
 
   .rt-search {
     width: 100%;
@@ -13,5 +14,17 @@
     border: 2px solid $secondary;
     border-radius: 1rem;
     background: $white;
+  }
+
+  .rt-td {
+    align-items: center;
+  }
+
+  .demographic-row {
+    .person-age {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 }
