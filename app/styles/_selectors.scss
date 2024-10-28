@@ -1,6 +1,26 @@
+.datepicker {
+  background: #f7faff;
+}
+
+.datepicker table tr td.active.active {
+  background: #276fba !important;
+}
+
 .selectors {
   display: flex;
   gap: 1rem;
   align-items: center;
   margin-right: 1rem;
+  margin-top: 1rem;
+
+  .input-group-addon {
+    background: 0;
+    border: 0;
+  }
+
+  .form-control {
+    border: 0;
+    background: #f7faff;
+    box-shadow: none;
+  }
 }

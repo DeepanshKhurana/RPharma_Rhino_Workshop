@@ -10,6 +10,7 @@ box::use(
     observeEvent,
     removeUI,
     renderUI,
+    tags,
     uiOutput
   ],
   stats[
@@ -44,13 +45,16 @@ server <- function(
     ns <- session$ns
 
     observeEvent(app_data$date_column, {
-      if (is_convertible_to_date(app_data$date_column, app_data$dataset)) {
+      if (
+        is_convertible_to_date(
+          app_data$date_column,
+          app_data$dataset
+        )
+      ) {
         output$date_range <- renderUI({
-
           dates <- na.omit(
             app_data$dataset[[app_data$date_column]]
           )
-
           dateRangeInput(
             inputId = "date_range",
             label = NULL,
@@ -59,20 +63,16 @@ server <- function(
             min = min(dates),
             max = max(dates)
           )
-
         })
       } else {
-
         removeUI(selector = ns("date_range"))
-
         output$date_range <- renderUI({
-          div(
+          tags$p(
             glue(
               "{app_data$date_column} has no dates"
             )
           )
         })
-
       }
     })
   })
