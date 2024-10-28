@@ -2,13 +2,18 @@ box::use(
   glue[
     glue
   ],
+  pharmaversesdtm[
+    dm #nolint
+  ],
   shiny[
+    actionButton,
     dateRangeInput,
+    icon,
     moduleServer,
     NS,
     observeEvent,
-    removeUI,
     renderUI,
+    req,
     tags,
     uiOutput
   ],
@@ -29,8 +34,13 @@ ui <- function(id) {
   tags$div(
     class = "selectors",
     uiOutput(
-      ns("date_range")
+      ns("date_range_container")
     ),
+    actionButton(
+      ns("reset"),
+      NULL,
+      icon = icon("undo")
+    )
   )
 }
 
@@ -43,6 +53,23 @@ server <- function(
 
     ns <- session$ns
 
+    observeEvent(input$reset, {
+      app_data$filtered_dataset <- app_data$dataset
+      app_data$date_column <- NULL
+    })
+
+    observeEvent(input$date_range, {
+      req(app_data$date_column)
+      if (is.null(input$date_range)) {
+        app_data$filtered_dataset <- app_data$dataset
+      } else {
+        app_data$filtered_dataset <- app_data$dataset[
+        app_data$dataset[[app_data$date_column]] >= input$date_range[1] &
+          app_data$dataset[[app_data$date_column]] <= input$date_range[2],
+      ]
+      }
+    })
+
     observeEvent(app_data$date_column, {
       if (
         is_convertible_to_date(
@@ -50,7 +77,8 @@ server <- function(
           app_data$dataset
         )
       ) {
-        output$date_range <- renderUI({
+        output$date_range_container <- renderUI({
+          req(app_data$date_column)
           dates <- na.omit(
             app_data$dataset[[app_data$date_column]]
           )
@@ -64,8 +92,7 @@ server <- function(
           )
         })
       } else {
-        removeUI(selector = ns("date_range"))
-        output$date_range <- renderUI({
+        output$date_range_container <- renderUI({
           tags$p(
             glue(
               "{app_data$date_column} has no dates"

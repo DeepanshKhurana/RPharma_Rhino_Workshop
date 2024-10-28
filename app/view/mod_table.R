@@ -45,12 +45,9 @@ server <- function(
 
     output$table <- renderReactable({
       reactable(
-        data = app_data$dataset,
+        data = app_data$filtered_dataset,
         borderless = TRUE,
-        searchable = TRUE,
-        defaultSorted = list(
-          "DMDTC" = "asc"
-        )
+        searchable = TRUE
       )
     })
   })

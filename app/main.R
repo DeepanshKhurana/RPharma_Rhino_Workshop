@@ -2,6 +2,9 @@ box::use(
   config[
     get
   ],
+  dplyr[
+    filter
+  ],
   pharmaversesdtm[
     dm #nolint
   ],
@@ -9,6 +12,7 @@ box::use(
     fluidPage,
     moduleServer,
     NS,
+    observeEvent,
     reactiveValues,
     tags
   ],
@@ -45,13 +49,16 @@ server <- function(id) {
 
     app_data <- reactiveValues(
       dataset = dm,
-      date_column = NULL
+      date_column = NULL,
+      filtered_dataset = dm
     )
 
-    mod_table$server(
-      "table",
-      app_data
-    )
+    observeEvent(app_data$filtered_dataset, {
+      mod_table$server(
+        "table",
+        app_data
+      )
+    })
 
     mod_selector$server(
       "form",
