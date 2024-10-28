@@ -2,9 +2,6 @@ box::use(
   config[
     get
   ],
-  dplyr[
-    filter
-  ],
   pharmaversesdtm[
     dm #nolint
   ],
