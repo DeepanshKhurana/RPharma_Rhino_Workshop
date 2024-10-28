@@ -1,20 +1,27 @@
 box::use(
   reactable[
+    getReactableState,
     reactable,
     reactableOutput,
     renderReactable
   ],
   shiny[
+    div,
     moduleServer,
-    NS
+    NS,
+    observeEvent,
+    reactive
   ],
 )
 
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  reactableOutput(
-    ns("table")
+  div(
+    class = "table",
+    reactableOutput(
+      ns("table")
+    )
   )
 }
 
@@ -24,9 +31,24 @@ server <- function(
   app_data
 ) {
   moduleServer(id, function(input, output, session) {
+
+    sort_state <- reactive({
+      getReactableState(
+        "table",
+        "sorted"
+      )
+    })
+
+    observeEvent(sort_state(), {
+      app_data$date_column <- names(sort_state())[1]
+    })
+
     output$table <- renderReactable({
       reactable(
-        data = app_data$dataset
+        data = app_data$dataset,
+        defaultSorted = list(
+          "DMDTC" = "asc"
+        )
       )
     })
   })

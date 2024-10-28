@@ -2,5 +2,6 @@
 library(pharmaversesdtm)
 library(reactable)
 library(rhino)
+library(stringr)
 library(treesitter)
 library(treesitter.r)

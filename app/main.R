@@ -1,16 +1,21 @@
 box::use(
+  config[
+    get
+  ],
+  pharmaversesdtm[
+    dm #nolint
+  ],
   shiny[
     fluidPage,
     moduleServer,
     NS,
-    observeEvent,
     reactiveValues,
-    req,
+    tags
   ],
 )
 
 box::use(
-  app/view/mod_form,
+  app/view/mod_selector,
   app/view/mod_table,
 )
 
@@ -19,7 +24,17 @@ ui <- function(id) {
   ns <- NS(id)
   fluidPage(
     class = "app-container",
-    mod_form$ui(ns("form")),
+    tags$header(
+      tags$a(
+        href = get("rpharma_url"),
+        tags$img(
+          src = get("rpharma_logo"),
+          alt = "R/Pharma Logo",
+          class = "logo"
+        )
+      ),
+      mod_selector$ui(ns("form"))
+    ),
     mod_table$ui(ns("table"))
   )
 }
@@ -29,21 +44,19 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
     app_data <- reactiveValues(
-      dataset = NULL
+      dataset = dm,
+      date_column = NULL
     )
 
-    mod_form$server(
-      "form",
+    mod_table$server(
+      "table",
       app_data
     )
 
-    observeEvent(app_data$dataset, {
-      req(app_data$dataset)
-      mod_table$server(
-        "table",
-        app_data
-      )
-    })
+    mod_selector$server(
+      "form",
+      app_data
+    )
 
   })
 }
