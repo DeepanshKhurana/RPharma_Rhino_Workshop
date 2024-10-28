@@ -1,2 +1,8 @@
+@import "colors";
 @import "header";
 @import "selectors";
+@import "table";
+
+body {
+  background: $white;
+}

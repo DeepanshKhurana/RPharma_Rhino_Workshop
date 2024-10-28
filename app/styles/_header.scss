@@ -3,9 +3,9 @@ header {
   justify-content: space-between;
   align-items: center;
   margin: 2rem;
-  background: #e8f1ff;
+  background: $secondary;
   border-radius: 2rem;
   padding: 1rem;
-  box-shadow: 0.5rem 0.5rem 0 #276fba;
-  border: solid 2px #276fba;
+  box-shadow: 0.5rem 0.5rem 0 $primary;
+  border: solid 2px $primary;
 }

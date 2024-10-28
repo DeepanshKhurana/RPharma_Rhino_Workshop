@@ -1,9 +1,9 @@
 .datepicker {
-  background: #f7faff;
+  background: $white;
 }
 
 .datepicker table tr td.active.active {
-  background: #276fba !important;
+  background: $primary !important;
 }
 
 .selectors {
@@ -20,7 +20,7 @@
 
   .form-control {
     border: 0;
-    background: #f7faff;
+    background:$white;
     box-shadow: none;
   }
 }

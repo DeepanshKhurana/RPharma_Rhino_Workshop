@@ -1,0 +1,17 @@
+.Reactable {
+  background-color: transparent;
+  border: 2px solid $primary;
+  margin: 2rem;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0.5rem 0.5rem 0 0 $primary;
+
+  .rt-search {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 2px solid $secondary;
+    border-radius: 1rem;
+    background: $white;
+  }
+}
