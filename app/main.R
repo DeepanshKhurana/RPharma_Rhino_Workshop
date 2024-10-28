@@ -9,7 +9,6 @@ box::use(
     fluidPage,
     moduleServer,
     NS,
-    observeEvent,
     reactiveValues,
     tags
   ],
@@ -50,12 +49,10 @@ server <- function(id) {
       filtered_dataset = dm
     )
 
-    observeEvent(app_data$filtered_dataset, {
-      mod_table$server(
-        "table",
-        app_data
-      )
-    })
+    mod_table$server(
+      "table",
+      app_data
+    )
 
     mod_selector$server(
       "form",
