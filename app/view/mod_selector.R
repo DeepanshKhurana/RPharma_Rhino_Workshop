@@ -56,8 +56,8 @@ server <- function(
             app_data$dataset[[app_data$date_column]]
           )
           dateRangeInput(
-            inputId = "date_range",
-            label = NULL,
+            inputId = ns("date_range"),
+            label = app_data$date_column,
             start = min(dates),
             end = max(dates),
             min = min(dates),

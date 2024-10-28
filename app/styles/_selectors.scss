@@ -23,4 +23,14 @@
     background:$white;
     box-shadow: none;
   }
+
+  .shiny-date-range-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
 }
